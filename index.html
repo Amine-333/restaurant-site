@@ -1,16 +1,375 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="css/style.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurant</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willy Wonka - Mini Pancakes & Fresh Juices</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>🍫 Willy Wonka 🥞</h1>
+            <p class="tagline">Delicious Mini Pancakes & Fresh Juices</p>
+        </div>
+    </header>
 
-  <h1>Restaurant Site is Live 🍽️</h1>
-  <p>If you see this, GitHub Pages works.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to Willy Wonka!</h2>
+            <p>Experience the magic of our delicious mini pancakes and refreshing juices</p>
+            <a href="#menu" class="btn-primary">Order Now</a>
+        </div>
+    </section>
 
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            
+            <!-- Mini Pancakes -->
+            <div class="menu-category">
+                <h3>🥞 Mini Pancakes</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h4>Mini Pancakes (Plain)</h4>
+                            <span class="price">25 DZD</span>
+                        </div>
+                        <p class="item-description">Delicious mini pancakes with free Optila chocolate</p>
+                        <div class="item-controls">
+                            <label>Quantity:</label>
+                            <input type="number" min="0" value="0" class="quantity-input" data-item="pancake-plain" data-price="25">
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h4>Mini Pancakes + Morjan Chocolate</h4>
+                            <span class="price">75 DZD</span>
+                        </div>
+                        <p class="item-description">Mini pancakes topped with premium Morjan chocolate</p>
+                        <div class="item-controls">
+                            <label>Quantity:</label>
+                            <input type="number" min="0" value="0" class="quantity-input" data-item="pancake-morjan" data-price="75">
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h4>Mini Pancakes + Pistachio</h4>
+                            <span class="price">75 DZD</span>
+                        </div>
+                        <p class="item-description">Mini pancakes with crunchy pistachio particles</p>
+                        <div class="item-controls">
+                            <label>Quantity:</label>
+                            <input type="number" min="0" value="0" class="quantity-input" data-item="pancake-pistachio" data-price="75">
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h4>Mini Pancakes Deluxe</h4>
+                            <span class="price">125 DZD</span>
+                        </div>
+                        <p class="item-description">Mini pancakes with Morjan chocolate AND pistachio particles</p>
+                        <div class="item-controls">
+                            <label>Quantity:</label>
+                            <input type="number" min="0" value="0" class="quantity-input" data-item="pancake-deluxe" data-price="125">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Juices -->
+            <div class="menu-category">
+                <h3>🧃 Fresh Juices</h3>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h4>Lemonade</h4>
+                            <span class="price">150 DZD</span>
+                        </div>
+                        <p class="item-description">Refreshing fresh lemonade</p>
+                        <div class="item-controls">
+                            <label>Quantity:</label>
+                            <input type="number" min="0" value="0" class="quantity-input" data-item="juice-lemonade" data-price="150">
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h4>Mojito</h4>
+                            <span class="price">150 DZD</span>
+                        </div>
+                        <p class="item-description">Cool and refreshing mojito</p>
+                        <div class="item-controls">
+                            <label>Quantity:</label>
+                            <input type="number" min="0" value="0" class="quantity-input" data-item="juice-mojito" data-price="150">
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h4>Strawberry Juice</h4>
+                            <span class="price">150 DZD</span>
+                        </div>
+                        <p class="item-description">Sweet and fresh strawberry juice</p>
+                        <div class="item-controls">
+                            <label>Quantity:</label>
+                            <input type="number" min="0" value="0" class="quantity-input" data-item="juice-strawberry" data-price="150">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h2 class="section-title">Your Order</h2>
+            <div id="cart-items" class="cart-items">
+                <p class="empty-cart">Your cart is empty. Add items from the menu above!</p>
+            </div>
+            <div class="cart-total">
+                <h3>Total: <span id="total-price">0 DZD</span></h3>
+            </div>
+            <button id="checkout-btn" class="btn-primary btn-large" disabled>Complete Order</button>
+        </div>
+    </section>
+
+    <!-- Order Form Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Complete Your Order</h2>
+            <form id="order-form">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="customer-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address *</label>
+                    <textarea id="customer-address" rows="3" required placeholder="Street, Building, Apartment..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Area/Commune *</label>
+                    <select id="customer-area" required>
+                        <option value="">Select your area...</option>
+                        <option value="Draria">Draria</option>
+                        <option value="Achour">Achour</option>
+                        <option value="Benaknoun">Benaknoun</option>
+                        <option value="Oued Taria">Oued Taria</option>
+                        <option value="Soula">Soula</option>
+                        <option value="Baba Hassen">Baba Hassen</option>
+                        <option value="Other">Other (nearby areas)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Special Instructions (optional)</label>
+                    <textarea id="customer-notes" rows="2" placeholder="Any special requests?"></textarea>
+                </div>
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="modal-cart-items"></div>
+                    <div class="modal-total">
+                        <strong>Total: <span id="modal-total-price">0 DZD</span></strong>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary btn-large">Send Order via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>📍 Location</h3>
+                    <p>Draria, Algiers</p>
+                </div>
+                <div class="info-box">
+                    <h3>🚚 Delivery Areas</h3>
+                    <p>Draria, Achour, Benaknoun, Oued Taria, Soula, Baba Hassen & nearby areas</p>
+                </div>
+                <div class="info-box">
+                    <h3>📞 Contact</h3>
+                    <p><a href="tel:0797416501">0797 41 65 01</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Willy Wonka. All rights reserved.</p>
+            <p>Made with 🍫 in Algeria</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart management
+        let cart = {};
+        const quantityInputs = document.querySelectorAll('.quantity-input');
+        const cartItemsDiv = document.getElementById('cart-items');
+        const totalPriceSpan = document.getElementById('total-price');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const modal = document.getElementById('order-modal');
+        const closeModal = document.querySelector('.close');
+        const orderForm = document.getElementById('order-form');
+
+        // Item names mapping
+        const itemNames = {
+            'pancake-plain': 'Mini Pancakes (Plain)',
+            'pancake-morjan': 'Mini Pancakes + Morjan Chocolate',
+            'pancake-pistachio': 'Mini Pancakes + Pistachio',
+            'pancake-deluxe': 'Mini Pancakes Deluxe',
+            'juice-lemonade': 'Lemonade',
+            'juice-mojito': 'Mojito',
+            'juice-strawberry': 'Strawberry Juice'
+        };
+
+        // Update cart when quantity changes
+        quantityInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const item = this.dataset.item;
+                const price = parseInt(this.dataset.price);
+                const quantity = parseInt(this.value);
+
+                if (quantity > 0) {
+                    cart[item] = { quantity, price, name: itemNames[item] };
+                } else {
+                    delete cart[item];
+                }
+
+                updateCartDisplay();
+            });
+        });
+
+        function updateCartDisplay() {
+            if (Object.keys(cart).length === 0) {
+                cartItemsDiv.innerHTML = '<p class="empty-cart">Your cart is empty. Add items from the menu above!</p>';
+                totalPriceSpan.textContent = '0 DZD';
+                checkoutBtn.disabled = true;
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            for (const [item, data] of Object.entries(cart)) {
+                const itemTotal = data.quantity * data.price;
+                total += itemTotal;
+                html += `
+                    <div class="cart-item">
+                        <span class="cart-item-name">${data.name}</span>
+                        <span class="cart-item-quantity">x${data.quantity}</span>
+                        <span class="cart-item-price">${itemTotal} DZD</span>
+                    </div>
+                `;
+            }
+
+            cartItemsDiv.innerHTML = html;
+            totalPriceSpan.textContent = `${total} DZD`;
+            checkoutBtn.disabled = false;
+        }
+
+        // Open modal
+        checkoutBtn.addEventListener('click', function() {
+            // Update modal with cart items
+            let modalHtml = '';
+            let total = 0;
+
+            for (const [item, data] of Object.entries(cart)) {
+                const itemTotal = data.quantity * data.price;
+                total += itemTotal;
+                modalHtml += `
+                    <div class="modal-cart-item">
+                        ${data.name} x${data.quantity} - ${itemTotal} DZD
+                    </div>
+                `;
+            }
+
+            document.getElementById('modal-cart-items').innerHTML = modalHtml;
+            document.getElementById('modal-total-price').textContent = `${total} DZD`;
+            modal.style.display = 'block';
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Submit order via WhatsApp
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('customer-name').value;
+            const phone = document.getElementById('customer-phone').value;
+            const address = document.getElementById('customer-address').value;
+            const area = document.getElementById('customer-area').value;
+            const notes = document.getElementById('customer-notes').value;
+
+            // Build order message
+            let message = `🍫 *New Order from Willy Wonka Website* 🥞\n\n`;
+            message += `*Customer Details:*\n`;
+            message += `Name: ${name}\n`;
+            message += `Phone: ${phone}\n`;
+            message += `Address: ${address}\n`;
+            message += `Area: ${area}\n\n`;
+            message += `*Order Details:*\n`;
+
+            let total = 0;
+            for (const [item, data] of Object.entries(cart)) {
+                const itemTotal = data.quantity * data.price;
+                total += itemTotal;
+                message += `• ${data.name} x${data.quantity} = ${itemTotal} DZD\n`;
+            }
+
+            message += `\n*Total: ${total} DZD*\n`;
+
+            if (notes) {
+                message += `\n*Special Instructions:*\n${notes}`;
+            }
+
+            // Encode message for WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/213797416501?text=${encodedMessage}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            // Show success message
+            alert('Opening WhatsApp to send your order! Please send the message to complete your order.');
+            
+            // Reset form and cart
+            modal.style.display = 'none';
+            orderForm.reset();
+            cart = {};
+            quantityInputs.forEach(input => input.value = 0);
+            updateCartDisplay();
+        });
+
+        // Smooth scrolling
+        document.querySelector('a[href="#menu"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
